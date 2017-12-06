@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Cornerstone_DatabaseDBEntities-Web.config Connection String" description="Cornerstone_DatabaseDBEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/DataModel.csdl|res://*/DataModel.ssdl|res://*/DataModel.msl;provider=System.Data.SqlClient;provider connection string='data source=.\sqlexpress;initial catalog=&quot;Cornerstone Database&quot;;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework'" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\k20\\onedrive\\documents\\visual\ studio\ 2017\\Projects\\CornerStoneApp\\CornerStoneApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Cornerstone_DatabaseDBEntities']/@connectionString" />
+  </parameter>
+</parameters>

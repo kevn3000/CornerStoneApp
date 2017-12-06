@@ -4,14 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using CornerStoneApp.Models;
+
 namespace CornerStoneApp.Areas.Admin.Controllers
 {
-    public class PostsController : Controller
+    [Authorize(Roles = "admin")]
+    public class PostsController : Controller 
     {
         // GET: Admin/Posts
         public ActionResult Index()
         {
-            return Content("Admin Posts");
+           
+
+            return Content("Admin Post");
         }
     }
 }

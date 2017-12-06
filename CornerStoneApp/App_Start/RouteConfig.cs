@@ -14,6 +14,7 @@ namespace CornerStoneApp
         {
             var namespaces = new[] { typeof(PostsController).Namespace };
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("Views/Index");
 
             //editter according to udemy tutorials
             routes.MapRoute( "Login", "login", new { controller = "Auth", action = "Login" },namespaces );
@@ -22,7 +23,9 @@ namespace CornerStoneApp
                 "",
                 new {controller="Posts",action="Index" }, namespaces
             );
-            
+            routes.MapRoute("Children", "Child/Index", new { controller="Child", action="Index"}, namespaces);
+            routes.MapRoute("New_User", "User/Create", new { controller = "User", action = "Create" }, namespaces);
+
         }
     }
 }

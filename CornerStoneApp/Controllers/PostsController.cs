@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CornerStoneApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,14 @@ namespace CornerStoneApp.Controllers
     {
       public ActionResult Index()
         {
-            return Content("Hello, World!");
+            //Guardian kevin = new Guardian("kevin", "serrano", true);
+            //return Content(kevin.firstName +" "+kevin.lastName+" is a "+kevin.membership.isActive+" member!");
+            return View();
+        }
+        public ActionResult Test()
+
+        {
+            return Content("Test() is opened");
         }
     }
 }

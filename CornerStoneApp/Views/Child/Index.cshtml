@@ -1,0 +1,70 @@
+﻿@model CornerStoneApp.Models.Child
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Child_First_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Child_Last_Name)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Advo_Id)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Child1.Child_First_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Child2.Child_First_Name)
+            </th>
+            <th></th>
+        </tr>
+       
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Child_First_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Child_Last_Name)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Advo_Id)
+            </td>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.Child1.Child_First_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Child2.Child_First_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Child_Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Child_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Child_Id })
+            </td>
+        </tr>
+    }
+        
+    </table>
+</body>
+</html>

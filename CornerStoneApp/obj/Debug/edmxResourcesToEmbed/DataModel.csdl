@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Advocate">
+    <Key>
+      <PropertyRef Name="Advo_Id" />
+    </Key>
+    <Property Name="Advo_First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Advo_Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Advo_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Child">
+    <Key>
+      <PropertyRef Name="Child_Id" />
+    </Key>
+    <Property Name="Child_Id" Type="Int32" Nullable="false" />
+    <Property Name="Child_First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Child_Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Diagn_Id" Type="Int32" Nullable="false" />
+    <Property Name="Diagn_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Diagn_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Advo_Id" Type="Int32" Nullable="false" />
+    <Property Name="Advo_First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Advo_Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Diagnosi" Relationship="Self.Child_Has_Diagn" FromRole="Child" ToRole="Diagnosis" />
+    <NavigationProperty Name="Child1" Relationship="Self.Task_" FromRole="Child" ToRole="Child1" />
+    <NavigationProperty Name="Child2" Relationship="Self.Task_" FromRole="Child1" ToRole="Child" />
+    <NavigationProperty Name="Tasks" Relationship="Self.Task_For_Child" FromRole="Child" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Diagnosi">
+    <Key>
+      <PropertyRef Name="Diagn_Id" />
+    </Key>
+    <Property Name="Diagn_Id" Type="Int32" Nullable="false" />
+    <Property Name="Diagn_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Children" Relationship="Self.Child_Has_Diagn" FromRole="Diagnosis" ToRole="Child" />
+    <NavigationProperty Name="Projects" Relationship="Self.Project_Refers_Diagnosis" FromRole="Diagnosis" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Donor">
+    <Key>
+      <PropertyRef Name="Donor_Id" />
+    </Key>
+    <Property Name="Donor_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Guardian">
+    <Key>
+      <PropertyRef Name="Guard_Id" />
+    </Key>
+    <Property Name="Guard_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Projects" Relationship="Self.Project_For_Guardian" FromRole="Guardian" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Membership">
+    <Key>
+      <PropertyRef Name="MShip_Id" />
+    </Key>
+    <Property Name="MShip_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Person_Id" />
+    </Key>
+    <Property Name="Person_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Proj_Id" />
+    </Key>
+    <Property Name="Proj_Id" Type="Int32" Nullable="false" />
+    <Property Name="Child_Id" Type="Int32" Nullable="false" />
+    <Property Name="Child_First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Child_Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Guard_Id" Type="Int32" Nullable="false" />
+    <Property Name="Guard_First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Guard_Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Diagn_Id" Type="Int32" Nullable="false" />
+    <Property Name="Diagn_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Task_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Diagnosi" Relationship="Self.Project_Refers_Diagnosis" FromRole="Project" ToRole="Diagnosis" />
+    <NavigationProperty Name="Guardian" Relationship="Self.Project_For_Guardian" FromRole="Project" ToRole="Guardian" />
+    <NavigationProperty Name="Task" Relationship="Self.Task_For_Project" FromRole="Project" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Task_Id" />
+    </Key>
+    <Property Name="Task_Id" Type="Int32" Nullable="false" />
+    <Property Name="Task_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Child_Id" Type="Int32" Nullable="false" />
+    <Property Name="Task_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Child_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Child" Relationship="Self.Task_For_Child" FromRole="Task" ToRole="Child" />
+    <NavigationProperty Name="Projects" Relationship="Self.Task_For_Project" FromRole="Task" ToRole="Project" />
+  </EntityType>
+  <Association Name="Child_Has_Diagn">
+    <End Role="Diagnosis" Type="Self.Diagnosi" Multiplicity="1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diagnosis">
+        <PropertyRef Name="Diagn_Id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="Diagn_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Task_">
+    <End Role="Child" Type="Self.Child" Multiplicity="1" />
+    <End Role="Child1" Type="Self.Child" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Child">
+        <PropertyRef Name="Child_Id" />
+      </Principal>
+      <Dependent Role="Child1">
+        <PropertyRef Name="Child_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Task_For_Child">
+    <End Role="Child" Type="Self.Child" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Child">
+        <PropertyRef Name="Child_Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Child_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_Refers_Diagnosis">
+    <End Role="Diagnosis" Type="Self.Diagnosi" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diagnosis">
+        <PropertyRef Name="Diagn_Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Diagn_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_For_Guardian">
+    <End Role="Guardian" Type="Self.Guardian" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guardian">
+        <PropertyRef Name="Guard_Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Guard_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Task_For_Project">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Task_Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Task_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Cornerstone_DatabaseDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Advocates" EntityType="Self.Advocate" />
+    <EntitySet Name="Children" EntityType="Self.Child" />
+    <EntitySet Name="Diagnosis" EntityType="Self.Diagnosi" />
+    <EntitySet Name="Donors" EntityType="Self.Donor" />
+    <EntitySet Name="Guardians" EntityType="Self.Guardian" />
+    <EntitySet Name="Memberships" EntityType="Self.Membership" />
+    <EntitySet Name="People" EntityType="Self.Person" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tasks" EntityType="Self.Task" />
+    <AssociationSet Name="Child_Has_Diagn" Association="Self.Child_Has_Diagn">
+      <End Role="Diagnosis" EntitySet="Diagnosis" />
+      <End Role="Child" EntitySet="Children" />
+    </AssociationSet>
+    <AssociationSet Name="Task_" Association="Self.Task_">
+      <End Role="Child" EntitySet="Children" />
+      <End Role="Child1" EntitySet="Children" />
+    </AssociationSet>
+    <AssociationSet Name="Task_For_Child" Association="Self.Task_For_Child">
+      <End Role="Child" EntitySet="Children" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="Project_Refers_Diagnosis" Association="Self.Project_Refers_Diagnosis">
+      <End Role="Diagnosis" EntitySet="Diagnosis" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="Project_For_Guardian" Association="Self.Project_For_Guardian">
+      <End Role="Guardian" EntitySet="Guardians" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="Task_For_Project" Association="Self.Task_For_Project">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
